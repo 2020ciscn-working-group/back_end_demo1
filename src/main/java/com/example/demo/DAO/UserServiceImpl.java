@@ -3,20 +3,21 @@ package com.example.demo.DAO;
 import com.example.demo.Entity.UserEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Service
-public class SignInImpl implements UserService{
+public class UserServiceImpl implements UserService{
     private JdbcTemplate jdbcTemplate;
 
-    SignInImpl(JdbcTemplate jdbcTemplate){
+    UserServiceImpl(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public int create(String username, String password) {
-        return 0;
+    public int create(@RequestParam String username, @RequestParam String password) {
+        return jdbcTemplate.update("insert into demo1(username, password) values(?,?)",username,password);
     }
 
     @Override

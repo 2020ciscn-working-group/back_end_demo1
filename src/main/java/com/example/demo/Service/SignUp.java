@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.DAO.SignUpImpl;
+
+import com.example.demo.DAO.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SignUp {
 
     @Autowired
-    SignUpImpl su;
+    UserServiceImpl sui;
     /**
      *
      * @param username
@@ -21,7 +22,7 @@ public class SignUp {
     @PostMapping("/signup")
     public String signUp(@RequestParam String username, @RequestParam String password, @RequestParam String confpassword){
         if(password.equals(confpassword)){
-            su.create(username, password);
+            sui.create(username, password);
             return "/success";
         }
         else{
